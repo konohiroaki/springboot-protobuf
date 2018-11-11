@@ -8,7 +8,7 @@ import org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter;
 import java.util.HashMap;
 import java.util.Map;
 
-import io.github.konohiroaki.sbp.PersonProtos.Person;
+import io.github.konohiroaki.sbp.Person;
 
 @SpringBootApplication
 public class SpringbootProtobufApplication {
@@ -24,10 +24,10 @@ public class SpringbootProtobufApplication {
 
     @Bean
     public PersonRepository createTestPersons() {
-        Map<Integer, Person> persons = new HashMap<>();
+        Map<Person.PersonId, Person> persons = new HashMap<>();
         Person person1 = Person.newBuilder()
                 .setName("Foo")
-                .setId(1)
+                .setId(Person.PersonId.newBuilder().setId(1).build())
                 .setEmail("foo@foo.bar")
                 .addPhones(Person.PhoneNumber.newBuilder()
                                    .setNumber("1234567890")
@@ -36,7 +36,7 @@ public class SpringbootProtobufApplication {
                 .build();
         Person person2 = Person.newBuilder()
                 .setName("Bar")
-                .setId(2)
+                .setId(Person.PersonId.newBuilder().setId(2).build())
                 .setEmail("bar@foo.bar")
                 .addPhones(Person.PhoneNumber.newBuilder()
                                    .setNumber("2345678901")

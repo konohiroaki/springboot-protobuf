@@ -4,13 +4,22 @@ package dto;
 
 option java_package = "io.github.konohiroaki.sbp";
 option java_outer_classname = "PersonProtos";
+option java_multiple_files = true;
+
+service PersonService {
+    rpc GetPerson (Person.PersonId) returns (Person) {
+    }
+}
 
 message Person {
     string name = 1;
-    int32 id = 2;
+    PersonId id = 2;
     string email = 3;
-
     repeated PhoneNumber phones = 4;
+
+    message PersonId {
+        int32 id = 1;
+    }
 
     message PhoneNumber {
         string number = 1;

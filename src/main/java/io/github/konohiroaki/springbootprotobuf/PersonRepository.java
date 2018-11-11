@@ -2,17 +2,17 @@ package io.github.konohiroaki.springbootprotobuf;
 
 import java.util.Map;
 
-import io.github.konohiroaki.sbp.PersonProtos.Person;
+import io.github.konohiroaki.sbp.Person;
 
 public class PersonRepository {
 
-    Map<Integer, Person> persons;
+    Map<Person.PersonId, Person> persons;
 
-    public PersonRepository(Map<Integer, Person> persons) {
+    public PersonRepository(Map<Person.PersonId, Person> persons) {
         this.persons = persons;
     }
 
-    public Person getPerson(int id) {
+    public Person getPerson(Person.PersonId id) {
         return persons.get(id);
     }
 

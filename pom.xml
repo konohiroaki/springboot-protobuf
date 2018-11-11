@@ -22,6 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <grpc.version>1.15.1</grpc.version>
     </properties>
 
     <dependencies>
@@ -42,6 +43,12 @@
             <artifactId>protobuf-java</artifactId>
             <version>3.6.1</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.lognet</groupId>
+            <artifactId>grpc-spring-boot-starter</artifactId>
+            <version>3.0.0</version>
         </dependency>
     </dependencies>
 
@@ -70,12 +77,16 @@
                     <execution>
                         <goals>
                             <goal>compile</goal>
+                            <goal>compile-custom</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
                     <!-- Specifies executable for this environment -->
                     <protocArtifact>com.google.protobuf:protoc:3.6.1:exe:${os.detected.classifier}</protocArtifact>
+                    <!-- Specify plugin used for compile-custom goal -->
+                    <pluginId>grpc-java</pluginId>
+                    <pluginArtifact>io.grpc:protoc-gen-grpc-java:${grpc.version}:exe:${os.detected.classifier}</pluginArtifact>
                 </configuration>
             </plugin>
         </plugins>
