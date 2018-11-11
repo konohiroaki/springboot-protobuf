@@ -9,6 +9,12 @@ option java_multiple_files = true;
 service PersonService {
     rpc GetPerson (Person.PersonId) returns (Person) {
     }
+    rpc ListPersons (Empty) returns (stream Person) {
+    }
+    rpc AllPersonExisting (stream Person.PersonId) returns (Existence) {
+    }
+    rpc GetPersons (stream Person.PersonId) returns (stream Person) {
+    }
 }
 
 message Person {
@@ -31,4 +37,11 @@ message Person {
             WORK = 2;
         }
     }
+}
+
+message Empty {
+}
+
+message Existence {
+    bool exist = 1;
 }
