@@ -24,12 +24,8 @@ public class PersonService extends PersonServiceGrpc.PersonServiceImplBase {
      */
     @Override
     public void getPerson(Person.PersonId request, StreamObserver<Person> responseObserver) {
-        // Construct Person for response.
         Person person = personRepo.getPerson(request);
-        // Pass Person to .onNext() to return it as response.
-        // For non-stream response, I guess this won't trigger sending back response to client. Instead it should wait until .onCompleted().
         responseObserver.onNext(person);
-        // Use .onCompleted() to respond.
         responseObserver.onCompleted();
     }
 
